@@ -13,8 +13,9 @@ df=spark.read.csv('/home/hjain/Desktop/work/Files/substr.txt',).toDF("raw")
 df=df.withColumn("Name",substring(col("raw"),1,3)) \
     .withColumn("ID",substring(col("raw"),4,3)) \
     .withColumn("Num",substring(col("raw"),7,3)) \
-    .withColumn("Split",split(col("raw"),[0-9])) \
     .drop(col("raw"))
+    #.withColumn("Split",split(col("raw"),[0-9])) \
+
 
 df.show()
 #df.withColumn("Num2",when(col("Num")=='',None).otherwise(col("Num"))) \

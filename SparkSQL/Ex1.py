@@ -26,7 +26,7 @@ REPLICATION_FACTOR = 101
 l = []
 replicated_products = []
 for r in res:
-    print(type(r))
+    #print(type(r))
     replicated_products.append(r["product_id"])
     for rep in range(REPLICATION_FACTOR):
         l.append((r["product_id"],rep))
@@ -40,7 +40,7 @@ prdDf=prdDf.join(broadcast(replicated_df),prdDf["product_id"]==replicated_df["pr
       withColumn("new_key",when(replicated_df["rep"].isNotNull(),concat(prdDf["product_id"],lit("-"),replicated_df["rep"])). \
       otherwise(prdDf["product_id"]))
 
-salesDf=salesDf.withColumn("new_key",when(salesDf["product_id"].isin(replicated_products),concat(salesDf["product_id"],lit("-"),round(rand()*100,2).cast(IntegerType()))).otherwise(salesDf["product_id"]))
+salesDf=salesDf.withColumn("new_key",when(salesDf["product_id"].isin(replicated_products),concat(salesDf["product_id"],lit("-"),(round(rand(),2)*100).cast(IntegerType()))).otherwise(salesDf["product_id"]))
 #salesDf.show()
 
 

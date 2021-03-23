@@ -13,5 +13,5 @@ salesDf=spark.read.format('parquet').load('/home/hjain/Desktop/work/Files/Exerci
 print(prdDf.count())
 print(salesDf.count())
 
-df=prdDf.select(col("product_id")).union(salesDf.select(col("product_id"))).distinct()
+df=prdDf.select(col("product_id")).union(salesDf.select(col("product_id"))).distinct() #Distinct is needed because union allowes duplicates like union all
 print(df.count())

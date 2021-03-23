@@ -7,6 +7,6 @@ spark = SparkSession.builder \
     .appName("union") \
     .getOrCreate()
 
-df=spark.read.csv('/home/hjain/Desktop/work/Files/num.txt',sep=' ') #.toDF("num")
+df=spark.read.csv('/home/hjain/Desktop/work/Files/num.txt',sep=' ').toDF("num","xx")
 df.show()
-#df.agg(round(avg(col("num")),2)).show()
+df.agg(round(avg(col("num")),2)).show()
