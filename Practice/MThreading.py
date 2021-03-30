@@ -23,8 +23,8 @@ t2= threading.Thread(target=calc_cube, args=(arr,))
 t1.start()
 t2.start()
 
-t1.join()
-t2.join()
+t1.join() #means wait until t1 is done
+t2.join() #means wait until t2 is done
 
 print("done in : ",time.time()-t)
 print("Hah... I am done with all my work now!")

@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
-
+import time
 
 spark = SparkSession.builder \
     .master("local") \
@@ -14,10 +14,13 @@ salesDf=spark.read.format('parquet').load('/home/hjain/Desktop/work/Files/Exerci
 sellerDf=spark.read.format('parquet').load('/home/hjain/Desktop/work/Files/Exercise/SixSparkEx/sellers_parquet')
 #prdDf.show()
 
+time1=time.time()
 prd=prdDf.count()
 sal=salesDf.count()
 sell=sellerDf.count()
 
+time_taken=time.time()-time1
+print(f'count done {time_taken}')
 print(f'product -{prd} , ord -{sal}, sellers -{sell}')
 #salesDf.printSchema()
 
